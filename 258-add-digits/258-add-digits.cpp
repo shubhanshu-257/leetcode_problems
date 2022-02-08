@@ -10,12 +10,15 @@ public:
         return s;
     }
     int addDigits(int num) {
-        while(1){
-            if (num>=0 && num<=9){
-                break;
-            }
-            num=sum(num);
+        int x= num%9;
+        if (num==0){
+            return 0;
         }
-        return num;
+        if (x==0){
+            return 9;
+        }
+        else{
+            return x;
+        }
     }
 };
