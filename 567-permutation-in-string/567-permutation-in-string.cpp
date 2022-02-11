@@ -1,40 +1,30 @@
 class Solution {
 public:
     bool checkInclusion(string s1, string s2) {
-        unordered_map<char,int>mp,mp1;
+        vector<int>v1(26);
+        vector<int>v2(26);
         int n = s1.length();
         int m = s2.length();
-        for(int i=0;i<n;i++){
-            mp[s1[i]]++;
-            mp1[s1[i]]++;
+        if (n>m){
+            return false;
         }
-        int cnt=n;
+        for (int i=0;i<n;i++){
+            v1[s1[i]-'a']++;
+            v2[s2[i]-'a']++;
+        }
+        if (v1==v2){
+            return true;
+        }
         int k=0;
-        for (int i=0;i<m;i++){
-            if (mp.find(s2[i])!=mp.end()){
-                if (mp[s2[i]]){
-                   // cout<<i<<endl;
-                    cnt--;
-                    mp[s2[i]]--;
-                     if((i+1-k)==n){
-                         return true;
-                     }
-                }
-                else{
-                    while(s2[k]!=s2[i]){
-                        mp[s2[k]]++;
-                        k++;
-                       // cout<<i<<endl;
-                    }
-                    k++;
-                }
-            }
-            else{
-                mp=mp1;
-                cnt=n;
-                k=i+1;
-            }
-        }
+        for (int j=n;j<m;j++){
+            v2[s2[j]-'a']++;
+            v2[s2[k]-'a']--;
+        k++;
+        if (v1==v2){
+            return true;
+        }}
+        
         return false;
+        
     }
 };
