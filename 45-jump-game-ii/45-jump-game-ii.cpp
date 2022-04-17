@@ -3,24 +3,25 @@ public:
     int jump(vector<int>& nums) {
         int n=nums.size();
         int dp[n];
-        dp[n-1]=0;
-        
-        for (int i=n-2;i>=0;i--){
-            if ((i+nums[i])<=(n-1)){
-                int y=INT_MAX-1;
-                for (int j=i+1;j<=i+nums[i];j++){
-                    y=min(y,dp[j]);
+        int cur=0;
+        int max=0;
+        int jump=0;
+        for (int i=0;i<n-1;i++){
+            if (i==cur){
+                jump++;
+                if (max<(nums[i]+i)){
+                    max=nums[i]+i;
                 }
-                dp[i]=1+y;
+                cur=max;
             }
             else{
-                int y=INT_MAX-1;
-                for (int j=i+1;j<=n-1;j++){
-                y=min(y,dp[j]);
-            }
-                dp[i]=1+y;
+                if (max<(nums[i]+i)){
+                    max=nums[i]+i;
+                }
             }
         }
-        return dp[0];
+        
+        
+        return jump;
     }
 };
