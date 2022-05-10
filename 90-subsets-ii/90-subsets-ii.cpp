@@ -1,6 +1,5 @@
 class Solution {
 public:
-    
     void f(int ind,vector<int>nums,vector<int>op,vector<vector<int>>&ans){
        ans.push_back(op);
         for (int i=ind;i<nums.size();i++){
