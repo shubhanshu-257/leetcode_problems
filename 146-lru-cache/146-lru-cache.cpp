@@ -2,9 +2,8 @@ class LRUCache {
 public:
     class node{
     public:
-        
-        int key;
         int val;
+        int key;
         node* next;
         node* prev;
         node(int _key,int _val){
@@ -49,10 +48,13 @@ public:
     
     void put(int _key, int value) {
         if (mp.find(_key)!=mp.end()){
+            mp[_key]->val=value;
             node* res=mp[_key];
             deletenode(res);
-            mp.erase(_key);
+            addnode(res);
+            mp[_key]=head->next;
         }
+        else{
             if (cap==mp.size()){
                 mp.erase(tail->prev->key);
                 deletenode(tail->prev); 
@@ -60,6 +62,7 @@ public:
             node* t=new node(_key,value);
             addnode(t);
             mp[_key]=head->next;
+        }
     }
 };
 
