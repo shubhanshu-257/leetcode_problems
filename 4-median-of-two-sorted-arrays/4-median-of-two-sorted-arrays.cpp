@@ -20,7 +20,7 @@ public:
         int x;
         double y;
         if ((n+m)%2==0){
-            x=(n+m)/2;
+            x=(n+m-1)/2;
         
         int lo;
         int hi;
@@ -38,41 +38,41 @@ public:
         }
             int d=lo;
             int e=hi;
-           while(lo<hi){
+           while(lo<=hi){
                int mid=lo+(hi-lo)/2;
                int cnt=0;
                cnt+=bs(nums1,mid);
                cnt+=bs(nums2,mid);
               // cout<<cnt<<endl;
-               if (cnt<x){
+               if (cnt<=x){
                    lo=mid+1;
                }
                else{
-                   hi=mid;
+                   hi=mid-1;
                }
            }
             x++;
-            int p=hi;
+            int p=lo;
             lo=d;
             hi=e;
-            while(lo<hi){
+            while(lo<=hi){
                int mid=lo+(hi-lo)/2;
                int cnt=0;
                cnt+=bs(nums1,mid);
                cnt+=bs(nums2,mid);
               // cout<<cnt<<endl;
-               if (cnt<x){
+               if (cnt<=x){
                    lo=mid+1;
                }
                else{
-                   hi=mid;
+                   hi=mid-1;
                }
            }
             
-            y=((hi+p)*1.0)/2;
+            y=((lo+p)*1.0)/2;
         }
         else{
-            x=(n+m+1)/2;
+            x=(n+m)/2;
             int lo;
         int hi;
         if (n!=0 && m!=0){
@@ -87,20 +87,20 @@ public:
             lo=nums2[0];
             hi=nums2[m-1];
         }
-            while(lo<hi){
+            while(lo<=hi){
                int mid=lo+(hi-lo)/2;
                int cnt=0;
                cnt+=bs(nums1,mid);
                 
                cnt+=bs(nums2,mid);
-               if (cnt<x){
+               if (cnt<=x){
                    lo=mid+1;
                }
                else{
-                   hi=mid;
+                   hi=mid-1;
                }
            }
-            y=hi*1.0;
+            y=lo*1.0;
         }
         return y;
     }
