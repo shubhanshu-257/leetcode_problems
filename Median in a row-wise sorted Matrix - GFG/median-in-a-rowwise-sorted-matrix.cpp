@@ -10,7 +10,7 @@ using namespace std;
 
 class Solution{   
 public:
-  int bs(vector<int>v,int t,int hi){
+int bs(vector<int>v,int t,int hi){
       int lo=0;
       int res=0;
       while(lo<=hi){
@@ -29,31 +29,29 @@ public:
       
   }
     int median(vector<vector<int>> &matrix, int r, int c){
-       int x=(r*c+1)/2;
-       int lo=2001;
-       int hi=0;
-       for (int i=0;i<r;i++){
-           lo=min(lo,matrix[i][0]);
-           hi=max(hi,matrix[i][c-1]);
-       }
-     //  cout<<lo<<" "<<hi<<endl;
-       while(lo<hi){
-           int mid=lo+(hi-lo)/2;
-          // cout<<mid;
-           int cnt=0;
-           for (int k=0;k<r;k++){
-               cnt+=bs(matrix[k],mid,c-1);
-           }
-         //  cout<<cnt<<endl;
-           if (cnt<x){
-               lo=mid+1;
-           }
-           else{
-               hi=mid;
-           }
-       }
-       return hi;
-      
+        int n=(r*c+1)/2;
+        int lo=20001;
+        int hi=0;
+        for (int i=0;i<r;i++){
+            lo=min(lo,matrix[0][i]);
+            hi=max(hi,matrix[i][c-1]);
+        }
+        
+        while(lo<hi){
+            int mid=lo+(hi-lo)/2;
+            int cnt=0;
+            for (int k=0;k<r;k++){
+                cnt+=bs(matrix[k],mid,c-1);
+            }
+            if (cnt<n){
+                lo=mid+1;
+            }
+            else{
+                hi=mid;
+            }
+        }
+        return hi;
+        
     }
 };
 
