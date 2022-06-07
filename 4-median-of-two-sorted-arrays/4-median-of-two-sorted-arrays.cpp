@@ -20,7 +20,7 @@ public:
         int x;
         double y;
         if ((n+m)%2==0){
-            x=(n+m)/2-1;
+            x=(n+m)/2;
         
         int lo;
         int hi;
@@ -44,7 +44,7 @@ public:
                cnt+=bs(nums1,mid);
                cnt+=bs(nums2,mid);
               // cout<<cnt<<endl;
-               if (cnt<=x){
+               if (cnt<x){
                    lo=mid+1;
                }
                else{
@@ -52,7 +52,7 @@ public:
                }
            }
             x++;
-            int p=lo;
+            int p=hi;
             lo=d;
             hi=e;
             while(lo<hi){
@@ -61,7 +61,7 @@ public:
                cnt+=bs(nums1,mid);
                cnt+=bs(nums2,mid);
               // cout<<cnt<<endl;
-               if (cnt<=x){
+               if (cnt<x){
                    lo=mid+1;
                }
                else{
@@ -69,10 +69,10 @@ public:
                }
            }
             
-            y=((lo+p)*1.0)/2;
+            y=((hi+p)*1.0)/2;
         }
         else{
-            x=(n+m)/2;
+            x=(n+m+1)/2;
             int lo;
         int hi;
         if (n!=0 && m!=0){
@@ -91,15 +91,16 @@ public:
                int mid=lo+(hi-lo)/2;
                int cnt=0;
                cnt+=bs(nums1,mid);
+                
                cnt+=bs(nums2,mid);
-               if (cnt<=x){
+               if (cnt<x){
                    lo=mid+1;
                }
                else{
                    hi=mid;
                }
            }
-            y=lo*1.0;
+            y=hi*1.0;
         }
         return y;
     }
